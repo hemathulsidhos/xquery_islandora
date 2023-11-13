@@ -1,0 +1,8 @@
+declare namespace mods="http://www.loc.gov/mods/v3";
+
+copy $xml := .
+modify (
+    let $authority := $xml//mods:subject[@authority='lcsh'][mods:geographic[contains(@valueURI, 'id.worldcat.org/fast')]]/@authority
+    return replace value of node $authority with "fast"
+)
+return $xml
