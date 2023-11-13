@@ -1,0 +1,8 @@
+xquery version "3.0" encoding "UTF-8";
+declare namespace mods="http://www.loc.gov/mods/v3";
+copy $input := .
+modify (
+  for $type in $input//mods:relatedItem[@displayLabel='Collection']/@type
+  return replace value of node $type with "original"
+)
+return $input
