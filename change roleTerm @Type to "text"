@@ -1,0 +1,8 @@
+declare namespace mods="http://www.loc.gov/mods/v3";
+
+copy $xml := .
+modify (
+      let $roleTerm_type := $xml/mods:mods/mods:role/mods:roleTerm[text() = "creator"]/@type
+      return replace value of node $roleTerm_type with "text"
+)
+return $xml
